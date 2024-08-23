@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-    <div class="mx-3 mt-2 px-2 py-1 w-fit rounded border border-gray-200 text-gray-900 hover:bg-gray-200"
+    <div class="mx-3 mt-2 px-2 py-1 w-fit rounded border border-gray-200 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:text-gray-900"
         @click="hasHistory() ? $router.go(-1) : $router.push('/')" role="button">
         <font-awesome-icon :icon="['fas', 'arrow-left']" />
         Indietro

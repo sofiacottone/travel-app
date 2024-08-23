@@ -20,9 +20,9 @@ export default {
 
   <ul class="md:flex md:flex-wrap px-6">
     <li v-for="trip in initialTrips"
-      class="flex md:flex-col items-center md:w-[calc((100%/3)-20px)] xl:w-[calc((100%/4)-20px)] md:max-h-96 gap-4 my-2 md:m-2 p-4 border rounded shadow shadow-cyan-100 cursor-pointer">
+      class="flex md:flex-col items-center md:w-[calc((100%/3)-20px)] xl:w-[calc((100%/4)-20px)] md:max-h-96 gap-4 my-2 md:m-2 p-4 border rounded shadow shadow-cyan-100 cursor-pointer dark:bg-slate-200 dark:text-gray-800">
 
-      <router-link :to="{ name: 'single-trip', params: { id: trip.id } }">
+      <router-link :to="{ name: 'single-trip', params: { id: trip.id } }" class="flex items-center gap-3 md:block">
         <img class="w-1/12 md:w-full md:h-auto md:max-h-72 md:rounded-t aspect-square object-cover rounded"
           :src="trip.img" alt="">
         <div class="md:text-center">

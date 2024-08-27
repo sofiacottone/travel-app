@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axiosInstance from '../axios';
+import { jwtDecode } from 'jwt-decode';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -73,6 +74,25 @@ export const useAuthStore = defineStore('auth', {
             } catch (error) {
                 console.error('Errore in fase di logout:', error.response ? error.response.data : error.message)
 
+            }
+        },
+        checkTokenExpiry() {
+            if (this.token) {
+                try {
+                    const decodedToken = jwtDecode(this.token);
+                    const now = Math.floor(Date.now() / 1000);
+
+                    // expired token
+                    if (decodedToken.exp < now) {
+                        this.logout();
+                        console.log('Token scaduto, effettua nuovamente l\'accesso');
+
+                    }
+                } catch (error) {
+                    console.error('Errore nella decodifica del token:', error);
+                    this.logout();
+
+                }
             }
         }
     }

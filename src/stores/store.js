@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import axios from '../axios';
 
 export const useTripsStore = defineStore('trips', {
     state: () => ({
+        baseURL: 'http://localhost:8000/api', // backend url
         initialTrips: [
             {
                 id: 1,
@@ -28,7 +29,29 @@ export const useTripsStore = defineStore('trips', {
                 to: '28 nov',
                 year: 2021,
             },
-        ]
+        ],
+        trips: [],
     }),
-    actions: {}
+    actions: {
+        async getTrips() {
+            try {
+                const response = await axios.get(`${this.baseURL}/trips`);
+                this.trips = response.data;
+                console.log('Viaggi:', this.trips);
+            } catch (error) {
+                console.error('Errore nel recupero dei viaggi:', error);
+            }
+        },
+        async createTrip(newTrip) {
+            try {
+                const response = await axios.post(`${this.baseURL}/trips`, newTrip);
+                if (response.success === true) {
+                    console.log('Viaggio creato:', response);
+                    this.trips.push(response.data);
+                }
+            } catch (error) {
+                console.error('Errore nella creazione del viaggio:', error);
+            }
+        }
+    }
 });

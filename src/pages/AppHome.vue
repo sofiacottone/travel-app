@@ -5,12 +5,34 @@ export default {
   data() {
     return {
       store: useTripsStore(),
+      loading: false,
+      error: null,
+    }
+  },
+  methods: {
+    async getTrips() {
+      this.loading = true;
+      this.error = null;
+      try {
+        await this.store.getTrips();
+      } catch (error) {
+        this.error = 'Errore nel recupero dei viaggi';
+        console.error('Errore nel recupero dei viaggi:', error);
+      } finally {
+        this.loading = false;
+      }
     }
   },
   computed: {
     initialTrips() {
       return this.store.initialTrips;
-    }
+    },
+    userTrips() {
+      return this.store.trips;
+    },
+  },
+  mounted() {
+    this.getTrips();
   }
 }
 </script>

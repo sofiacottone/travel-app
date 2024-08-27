@@ -103,12 +103,13 @@ export default {
 
                 <!-- navbar links  -->
                 <div :class="[isOpen ? 'block' : 'hidden']"
-                    class="items-center justify-between w-full md:flex md:w-auto" id="navbar-sticky">
+                    class="items-center justify-between w-full md:flex md:w-auto text-gray-900 dark:text-white"
+                    id="navbar-sticky">
                     <ul
                         class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-100 md:bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700">
                         <li v-for="link in navLinks">
                             <router-link
-                                class="block py-2 px-3 rounded cursor-pointer text-gray-900 dark:text-white hover:text-cyan-600 md:p-0 dark:hover:text-cyan-500 dark:hover:bg-gray-700 hover:bg-gray-200 md:hover:bg-transparent md:dark:hover:bg-transparent dark:border-gray-700"
+                                class="block py-2 px-3 rounded cursor-pointer  hover:text-cyan-600 md:p-0 dark:hover:text-cyan-500 dark:hover:bg-gray-700 hover:bg-gray-200 md:hover:bg-transparent md:dark:hover:bg-transparent dark:border-gray-700"
                                 activeClass="text-cyan-600 dark:text-cyan-500" aria-current="page"
                                 :to="{ name: link.routeName }" @click="isOpen = false">
                                 {{ link.label }}

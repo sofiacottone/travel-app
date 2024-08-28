@@ -6,6 +6,7 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null,
         token: localStorage.getItem('token') || null,
+        isTokenExpired: false,
         baseURL: 'http://localhost:8000/api', // backend url
 
     }),
@@ -71,6 +72,9 @@ export const useAuthStore = defineStore('auth', {
                 this.token = null;
                 localStorage.removeItem('token');
                 delete axiosInstance.defaults.headers.common['Authorization'];
+
+                // redirect to login page
+                window.location.href = '/login';
             } catch (error) {
                 console.error('Errore in fase di logout:', error.response ? error.response.data : error.message)
 

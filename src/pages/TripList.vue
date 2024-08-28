@@ -1,8 +1,13 @@
 <script>
 import { DateTime } from 'luxon';
 import { useTripsStore } from '../stores/store';
+import TokenExpiredModal from '../components/TokenExpiredModal.vue';
+
 
 export default {
+  components: {
+    TokenExpiredModal
+  },
   data() {
     return {
       store: useTripsStore(),
@@ -50,7 +55,7 @@ export default {
   <h2 class="text-xl font-bold px-6 py-4">Tutti i viaggi</h2>
 
   <div class="px-6">
-    <template v-if="userTrips.results.length > 0">
+    <template v-if="userTrips?.results?.length > 0">
       <p v-if="loading">Loading...</p>
       <p v-if="error">{{ error }}</p>
       <ul v-if="!loading && !error" class="md:flex md:flex-wrap">
@@ -109,6 +114,6 @@ export default {
     </li>
   </ul>
 
-
+  <TokenExpiredModal />
 
 </template>

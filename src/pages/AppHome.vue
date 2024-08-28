@@ -1,7 +1,11 @@
 <script>
 import { useTripsStore } from '../stores/store';
+import TokenExpiredModal from '../components/TokenExpiredModal.vue';
 
 export default {
+  components: {
+    TokenExpiredModal
+  },
   data() {
     return {
       store: useTripsStore(),
@@ -74,5 +78,5 @@ export default {
     </li>
   </ul>
 
-
+  <TokenExpiredModal />
 </template>

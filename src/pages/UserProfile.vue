@@ -1,7 +1,11 @@
 <script>
 import { useAuthStore } from '../stores/authStore';
+import TokenExpiredModal from '../components/TokenExpiredModal.vue';
 
 export default {
+    components: {
+        TokenExpiredModal
+    },
     data() {
         return {
             user: null,
@@ -31,7 +35,6 @@ export default {
     },
     mounted() {
         this.getAuthUser();
-        this.authStore.checkTokenExpiry();
     }
 }
 </script>
@@ -51,4 +54,7 @@ export default {
             <p>Caricamento dati...</p>
         </div>
     </div>
+
+    <TokenExpiredModal />
+
 </template>
